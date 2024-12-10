@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javafx.stage.Stage;
+import javafx.scene.Scene; // Import Scene class
 
 public class LevelTwo extends LevelParent {
 
@@ -9,6 +10,7 @@ public class LevelTwo extends LevelParent {
 	private final Boss boss;
 	private LevelViewLevelTwo levelView;
 	private final Stage primaryStage;
+	private PowerUp powerUp; // Add PowerUp field
 
 	public LevelTwo(double screenHeight, double screenWidth, Stage primaryStage) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
@@ -24,22 +26,24 @@ public class LevelTwo extends LevelParent {
 		System.out.println("Friendly units initialized in LevelTwo.");
 		//getRoot().getChildren().add(boss.getShieldImage());//d
 	}
-	@Override protected void initializeContainers() {
+
+	@Override
+	protected void initializeContainers() {
 		initializeBossLivesDisplay(boss);
 	}
 
-/*
-	@Override
-	protected void checkIfGameOver() {
-		if (userIsDestroyed()) {
-			loseGame(primaryStage);
+	/*
+		@Override
+		protected void checkIfGameOver() {
+			if (userIsDestroyed()) {
+				loseGame(primaryStage);
+			}
+			else if (boss.isDestroyed()) {
+				winGame();
+			}
 		}
-		else if (boss.isDestroyed()) {
-			winGame();
-		}
-	}
 
- */
+	 */
 	@Override
 	protected void checkIfGameOver() {
 		System.out.println("Checking if game is over...");
@@ -69,6 +73,20 @@ public class LevelTwo extends LevelParent {
 		//levelView.showShield();//d
 		System.out.println("LevelViewLevelTwo instantiated.");
 		return levelView;
+	}
+
+	// Add method to spawn power-up
+	private void spawnPowerUp() {
+		powerUp = new PowerUp(this);
+		getRoot().getChildren().add(powerUp);
+	}
+
+	// Override initializeScene to include power-up initialization
+	@Override
+	public Scene initializeScene() {
+		Scene scene = super.initializeScene();
+		spawnPowerUp();
+		return scene;
 	}
 
 }

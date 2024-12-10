@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserPlane extends FighterPlane {
 
 	private static final String IMAGE_NAME = "userplane1.png";
@@ -13,11 +16,13 @@ public class UserPlane extends FighterPlane {
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
 	private int velocityMultiplier;
 	private int numberOfKills;
+	private final List<PowerUp> followerPlanes; // Add list of follower planes
 	//private int health;  // add health variable
 
 	public UserPlane(int initialHealth) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
 		velocityMultiplier = 0;
+		this.followerPlanes = new ArrayList<>(); // Initialize list
 	}
 	
 	@Override
@@ -30,6 +35,7 @@ public class UserPlane extends FighterPlane {
 				this.setTranslateY(initialTranslateY);
 			}
 		}
+		updateFollowerPlanesPosition(); // Update followers' positions
 	}
 	
 	@Override
@@ -50,6 +56,10 @@ public class UserPlane extends FighterPlane {
 
 	@Override
 	public ActiveActorDestructible fireProjectile() {
+		// Notify power-up planes to fire
+		for (PowerUp powerUp : followerPlanes) {
+			powerUp.fireProjectile();
+		}
 		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 	private boolean isMoving() {
@@ -74,6 +84,17 @@ public class UserPlane extends FighterPlane {
 
 	public void incrementKillCount() {
 		numberOfKills++;
+	}
+
+	public void addFollowerPlane(PowerUp powerUp) {
+		followerPlanes.add(powerUp);
+	}
+	private void updateFollowerPlanesPosition() {
+		double userX = getLayoutX() + getTranslateX();
+		double userY = getLayoutY() + getTranslateY();
+		for (PowerUp powerUp : followerPlanes) {
+			powerUp.followUser(userX, userY);
+		}
 	}
 /*
 	public int getHealth() { // Add getHealth method

@@ -27,7 +27,7 @@ public abstract class LevelParent extends Observable {
 	private final Scene scene;
 	private final ImageView background;
 
-	private final List<ActiveActorDestructible> friendlyUnits;
+	protected final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
 	private final List<ActiveActorDestructible> userProjectiles;
 	private final List<ActiveActorDestructible> enemyProjectiles;
@@ -58,6 +58,13 @@ public abstract class LevelParent extends Observable {
 
 
 	}
+
+	// Getter for userProjectiles
+	public List<ActiveActorDestructible> getUserProjectiles() {
+		return userProjectiles;
+	}
+
+
 	// Initialize planes left display
 	protected void initializePlanesLeftDisplay(int totalEnemies) {
 		planesLeftDisplay = new PlanesLeftDisplay(root, screenWidth, 25, user, totalEnemies);
