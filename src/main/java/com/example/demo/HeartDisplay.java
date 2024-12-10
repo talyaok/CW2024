@@ -37,14 +37,39 @@ public class HeartDisplay {
 			container.getChildren().add(heart);
 		}
 	}
-	
+
+	//og code
 	public void removeHeart() {
 		if (!container.getChildren().isEmpty())
 			container.getChildren().remove(INDEX_OF_FIRST_ITEM);
 	}
+
+
+	/*
+	//my code used to test can be changed back??
+	public void removeHeart() {
+		// Check if there are hearts to remove before attempting to remove
+		if (!container.getChildren().isEmpty()) {
+			container.getChildren().remove(INDEX_OF_FIRST_ITEM);
+			System.out.println("Heart removed. Hearts left: " + container.getChildren().size());
+		} else {
+			System.out.println("No hearts left to remove!");
+			// Optionally, trigger game over logic here
+			// gameOver();
+		}
+	}
+
+	 */
 	
 	public HBox getContainer() {
 		return container;
+	}
+
+
+	// my code can be removed ??
+	public void gameOver() {
+		System.out.println("Game Over! You have lost all your hearts.");
+		// Implement logic to show Game Over screen or restart the game
 	}
 
 }

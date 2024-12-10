@@ -2,17 +2,18 @@ package com.example.demo;
 
 public class UserPlane extends FighterPlane {
 
-	private static final String IMAGE_NAME = "userplane.png";
+	private static final String IMAGE_NAME = "userplane1.png";
 	private static final double Y_UPPER_BOUND = -40;
 	private static final double Y_LOWER_BOUND = 600.0;
 	private static final double INITIAL_X_POSITION = 5.0;
 	private static final double INITIAL_Y_POSITION = 300.0;
-	private static final int IMAGE_HEIGHT = 150;
+	private static final int IMAGE_HEIGHT = 50;
 	private static final int VERTICAL_VELOCITY = 8;
 	private static final int PROJECTILE_X_POSITION = 110;
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
 	private int velocityMultiplier;
 	private int numberOfKills;
+	//private int health;  // add health variable
 
 	public UserPlane(int initialHealth) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
@@ -35,12 +36,22 @@ public class UserPlane extends FighterPlane {
 	public void updateActor() {
 		updatePosition();
 	}
-	
+
+	/*
+	@Override
+	public ActiveActorDestructible fireProjectile() {
+		UserProjectile projectile = new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+		return projectile;
+		// changed dont know why or who??
+		//return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+	}
+
+	 */
+
 	@Override
 	public ActiveActorDestructible fireProjectile() {
 		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
-
 	private boolean isMoving() {
 		return velocityMultiplier != 0;
 	}
@@ -64,5 +75,17 @@ public class UserPlane extends FighterPlane {
 	public void incrementKillCount() {
 		numberOfKills++;
 	}
+/*
+	public int getHealth() { // Add getHealth method
+		return health;
+	}
 
+ */
+/* comment out for testing
+	public void setHealth(int health) { // Add setHealth method
+		this.health = health;
+	}
+ */
 }
+
+
