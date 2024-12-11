@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -55,6 +57,11 @@ public class HowToPlayScreen extends Application {
         menuButton.setGraphic(menuButtonImageView);
         menuButton.setStyle("-fx-background-color: transparent;");
         menuButton.setOnAction(e -> showWelcomeScreen(primaryStage));
+        menuButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
 
         // Create the layout and add the background image, instructions, and button
         StackPane layout = new StackPane();
@@ -71,6 +78,9 @@ public class HowToPlayScreen extends Application {
         primaryStage.setTitle("How to Play");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // Consume space bar event on the scene
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
     }
 
     // Method to show the welcome screen

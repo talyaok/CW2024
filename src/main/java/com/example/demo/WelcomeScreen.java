@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -51,18 +53,33 @@ public class WelcomeScreen extends Application {
         startButton.setGraphic(startButtonImageView);
         startButton.setStyle("-fx-background-color: transparent;");
         startButton.setOnAction(e -> switchToGameScreen(primaryStage));
+        startButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
 
         // Create the quit button with the image
         Button quitButton = new Button();
         quitButton.setGraphic(quitButtonImageView);
         quitButton.setStyle("-fx-background-color: transparent;");
         quitButton.setOnAction(e -> System.exit(0));//quit the app
+        quitButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
 
         // Create the How to Play button with the image
         Button howToPlayButton = new Button();
         howToPlayButton.setGraphic(howToPlayButtonImageView);
         howToPlayButton.setStyle("-fx-background-color: transparent;");
         howToPlayButton.setOnAction(e -> showHowToPlayScreen(primaryStage));
+        howToPlayButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
 /*
         // Adjust the buttons positions
         startButton.setTranslateX(-400); // Move right by 200 pixels
@@ -86,6 +103,9 @@ public class WelcomeScreen extends Application {
         primaryStage.setTitle("Welcome to Sky Battle");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // Consume space bar event on the scene
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
     }
 
     // Method to switch to the main game screen

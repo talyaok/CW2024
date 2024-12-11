@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -44,12 +46,22 @@ public class YouWonScreen extends Application {
         quitButton.setGraphic(quitButtonImageView);
         quitButton.setStyle("-fx-background-color: transparent;");
         quitButton.setOnAction(e -> System.exit(0)); // Quit the application
+        quitButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
 
         // Create the menu button with the image
         Button menuButton = new Button();
         menuButton.setGraphic(menuButtonImageView);
         menuButton.setStyle("-fx-background-color: transparent;");
         menuButton.setOnAction(e -> showMenuScreen(primaryStage));
+        menuButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
 
         // Create the layout and add the background image and buttons
         StackPane layout = new StackPane();
@@ -65,6 +77,9 @@ public class YouWonScreen extends Application {
         primaryStage.setTitle("You Won!");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // Consume space bar event on the scene
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
     }
 
 

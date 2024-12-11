@@ -33,8 +33,8 @@ public class LevelOne extends LevelParent {
 		else if (userHasReachedKillTarget() && !checkLevelTransition){//d
 			checkLevelTransition = true;//d
 			System.out.println("level 2 starts");//d
-			goToNextLevel(NEXT_LEVEL);//d code altered to check problems can be og??
-			//showLevelOneCompleteScreen(primaryStage); // Show level complete screen
+			//goToNextLevel(NEXT_LEVEL);//d code altered to check problems can be og??
+			goToTransitionScreen();
 		}
 
 	}
@@ -66,6 +66,12 @@ public class LevelOne extends LevelParent {
 		//return levelView;
 		return new LevelView(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
+
+	private void goToTransitionScreen() {
+		TransitionScreen transitionScreen = new TransitionScreen(primaryStage);
+		transitionScreen.display();
+	}
+
 
 	private boolean userHasReachedKillTarget() {
 		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE;

@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 
 public class GameOverScreen extends Application {
 
@@ -43,12 +45,22 @@ public class GameOverScreen extends Application {
 		menuButton.setGraphic(menuButtonImageView);
 		menuButton.setStyle("-fx-background-color: transparent;");
 		menuButton.setOnAction(e -> showWelcomeScreen(primaryStage));
+		menuButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode() == KeyCode.SPACE) {
+				event.consume();
+			}
+		});
 
 		// Create the quit button with the image
 		Button quitButton = new Button();
 		quitButton.setGraphic(quitButtonImageView);
 		quitButton.setStyle("-fx-background-color: transparent;");
 		quitButton.setOnAction(e -> System.exit(0)); // Quit the application
+		quitButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode() == KeyCode.SPACE) {
+				event.consume();
+			}
+		});
 
 		// Adjust the buttons positions
 		//menuButton.setTranslateX(100); // Move right by 200 pixels
@@ -72,6 +84,9 @@ public class GameOverScreen extends Application {
 		primaryStage.setTitle("Game Over");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
+		// Consume space bar event on the scene
+		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
 	}
 
 	// Method to show the welcome screen
