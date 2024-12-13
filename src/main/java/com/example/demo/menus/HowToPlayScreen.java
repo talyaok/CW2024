@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.menus;
 
+import com.example.demo.menus.WelcomeScreen;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +16,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * The HowToPlayScreen class represents the screen that displays the game instructions
+ * for the player. It provides details on how to control the character, shoot, and win the game.
+ * The player can return to the welcome screen by clicking the menu button.
+ *
+ * This screen includes background images, text instructions, and a menu button that allows
+ * the player to navigate back to the welcome screen. It also handles keyboard input for event filtering.
+ *
+ * @author Talya
+ */
 public class HowToPlayScreen extends Application {
 
     private static final int SCREEN_WIDTH = 1300;
@@ -22,6 +33,12 @@ public class HowToPlayScreen extends Application {
     private static final String BACKGROUND_IMAGE_PATH = "/com/example/demo/images/WelcomeScreen.jpg";
     private static final String MENU_BUTTON_IMAGE_PATH = "/com/example/demo/images/MenuButton.png";
 
+    /**
+     * The start method sets up the How to Play screen, including background, instructions text,
+     * and the menu button. It sets the scene and shows the stage with the appropriate layout and button actions.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     @Override
     public void start(Stage primaryStage) {
         // Load the background image
@@ -83,6 +100,11 @@ public class HowToPlayScreen extends Application {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
     }
 
+    /**
+     * Displays the welcome screen when the menu button is clicked.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     // Method to show the welcome screen
     private void showWelcomeScreen(Stage primaryStage) {
         WelcomeScreen welcomeScreen = new WelcomeScreen();

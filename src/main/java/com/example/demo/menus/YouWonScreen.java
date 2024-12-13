@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.menus;
 
 
+import com.example.demo.menus.WelcomeScreen;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +14,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The YouWonScreen class represents the screen displayed when the player wins the game.
+ * It provides options for the player to either return to the main menu or quit the game.
+ * The screen includes a background image and buttons for each option.
+ *
+ * @author Talya
+ */
 public class YouWonScreen extends Application {
 
     private static final int SCREEN_WIDTH = 1300;
@@ -21,6 +29,12 @@ public class YouWonScreen extends Application {
     private static final String QUIT_BUTTON_IMAGE_PATH = "/com/example/demo/images/QuitButton.png";
     private static final String MENU_BUTTON_IMAGE_PATH = "/com/example/demo/images/MenuButton.png";
 
+    /**
+     * Starts the "You Won!" screen, which includes a background image and buttons for the player
+     * to either return to the menu or quit the game.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     @Override
     public void start(Stage primaryStage) {
         // Load the background image
@@ -83,6 +97,11 @@ public class YouWonScreen extends Application {
     }
 
 
+    /**
+     * Switches to the main menu screen when the player presses the "Menu" button.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     private void showMenuScreen(Stage primaryStage) {
         try {
             WelcomeScreen welcomeScreen = new WelcomeScreen();
@@ -92,6 +111,11 @@ public class YouWonScreen extends Application {
         }
     }
 
+    /**
+     * Launches the YouWonScreen application.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         launch(args);
     }

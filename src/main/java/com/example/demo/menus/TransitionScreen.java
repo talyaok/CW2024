@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.menus;
 
+import com.example.demo.levels.LevelTwo;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +12,14 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
+/**
+ * The TransitionScreen class represents the screen that appears after completing a level,
+ * allowing the player to navigate to the next level, the main menu, or quit the game.
+ * It includes buttons for transitioning to Level Two, returning to the welcome screen, and quitting the game.
+ * The background and button images are loaded dynamically, and actions are triggered by button clicks or keyboard events.
+ *
+ * @author Talya
+ */
 public class TransitionScreen {
     private static final int SCREEN_WIDTH = 1300;
     private static final int SCREEN_HEIGHT = 750;
@@ -21,10 +30,20 @@ public class TransitionScreen {
 
     private Stage primaryStage;
 
+    /**
+     * Constructor for the TransitionScreen class.
+     *
+     * @param primaryStage The primary stage (window) of the application.
+     */
     public TransitionScreen(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
+    /**
+     * Displays the transition screen, which includes a background image,
+     * buttons for transitioning to Level 2, returning to the main menu,
+     * and quitting the game. Button events are set up to handle each action.
+     */
     public void display() {
         // Load the background image
         Image backgroundImage = new Image(getClass().getResourceAsStream(BACKGROUND_IMAGE_PATH));
@@ -98,6 +117,10 @@ public class TransitionScreen {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
     }
 
+    /**
+     * Navigates to Level 2 when the corresponding button is clicked.
+     * Initializes the LevelTwo scene and starts the game.
+     */
     private void goToLevelTwo() {
         LevelTwo levelTwo = new LevelTwo(750, 1300, primaryStage); // Adjust screen size if necessary
         Scene levelTwoScene = levelTwo.initializeScene();
@@ -105,6 +128,11 @@ public class TransitionScreen {
         levelTwo.startGame();
     }
 
+    /**
+     * Displays the welcome screen when the main menu button is clicked.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     private void showWelcomeScreen(Stage primaryStage) {
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         try {
@@ -114,6 +142,9 @@ public class TransitionScreen {
         }
     }
 
+    /**
+     * Quits the game when the quit button is clicked.
+     */
     private void quitGame() {
         primaryStage.close();
     }

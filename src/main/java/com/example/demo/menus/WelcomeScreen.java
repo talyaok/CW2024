@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.menus;
 
 import com.example.demo.controller.Main;
 import javafx.application.Application;
@@ -13,6 +13,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The WelcomeScreen class represents the main menu of the game, offering the player options
+ * to start the game, quit the game, or view the "How to Play" screen. The screen includes
+ * buttons for each of these options, and handles user input through button clicks and keyboard events.
+ *
+ * @author Talya
+ */
 public class WelcomeScreen extends Application {
     private static final int SCREEN_WIDTH = 1300;
     private static final int SCREEN_HEIGHT = 750;
@@ -22,6 +29,12 @@ public class WelcomeScreen extends Application {
     private static final String HOW_TO_PLAY_BUTTON_IMAGE_PATH = "/com/example/demo/images/HowToButton.png";
 
 
+    /**
+     * Starts the welcome screen, which includes background image and buttons for starting the game,
+     * quitting, or viewing instructions.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -80,14 +93,7 @@ public class WelcomeScreen extends Application {
                 event.consume();
             }
         });
-/*
-        // Adjust the buttons positions
-        startButton.setTranslateX(-400); // Move right by 200 pixels
-        startButton.setTranslateY(-100); // Move down by 100 pixels
-        quitButton.setTranslateX(-400); // Move right by 200 pixels
-        quitButton.setTranslateY(-50); // Move down by 100 pixels
 
- */
 
         // Create the layout and add the background image and buttons
         StackPane layout = new StackPane();
@@ -108,6 +114,11 @@ public class WelcomeScreen extends Application {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
     }
 
+    /**
+     * Switches to the main game screen when the start button is clicked.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     // Method to switch to the main game screen
     private void switchToGameScreen(Stage primaryStage) {
         try {
@@ -118,6 +129,12 @@ public class WelcomeScreen extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Displays the "How to Play" screen when the respective button is clicked.
+     *
+     * @param primaryStage The primary stage (window) for the application.
+     */
     // Method to show the How to Play screen
     private void showHowToPlayScreen(Stage primaryStage) {
         HowToPlayScreen howToPlayScreen = new HowToPlayScreen();
@@ -128,6 +145,12 @@ public class WelcomeScreen extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Launches the WelcomeScreen application.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) { launch(args); }
 }
 

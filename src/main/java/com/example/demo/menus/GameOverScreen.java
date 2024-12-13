@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.menus;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,14 +11,30 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
+/**
+ * The GameOverScreen class represents the screen displayed when the game is over.
+ * It provides two options for the player: to return to the welcome screen or to quit the game.
+ *
+ * This class is responsible for displaying the background, the game over message, and the buttons
+ * for navigating to the welcome screen or quitting the game. It also handles keyboard input for
+ * event filtering to prevent spacebar interference with button actions.
+ *
+ * @author Talya
+ */
 public class GameOverScreen extends Application {
 
 	private static final int SCREEN_WIDTH = 1300;
 	private static final int SCREEN_HEIGHT = 750;
 	private static final String MENU_BUTTON_IMAGE_PATH = "/com/example/demo/images/MenuButton.png";
 	private static final String QUIT_BUTTON_IMAGE_PATH = "/com/example/demo/images/QuitButton.png";
-	private static final String BACKGROUND_IMAGE_PATH = "/com/example/demo/images/gameover3.png";
+	private static final String BACKGROUND_IMAGE_PATH = "/com/example/demo/images/gameover.png";
 
+	/**
+	 * The start method sets up the Game Over screen, including background, buttons, and functionality.
+	 * It sets the scene and shows the stage with the appropriate layout and button actions.
+	 *
+	 * @param primaryStage The primary stage (window) for the application.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		// Load the background image
@@ -89,6 +105,11 @@ public class GameOverScreen extends Application {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> { if (event.getCode() == KeyCode.SPACE) { event.consume(); } });
 	}
 
+	/**
+	 * Displays the welcome screen when the menu button is clicked.
+	 *
+	 * @param primaryStage The primary stage (window) for the application.
+	 */
 	// Method to show the welcome screen
 	private void showWelcomeScreen(Stage primaryStage) {
 		WelcomeScreen welcomeScreen = new WelcomeScreen();
